@@ -8,6 +8,8 @@ public class MainTest {
 	public static void main(String[] args) {
 		Vista miVista = new Vista();
 		
+		Modelo miModelo = new Modelo();
+		
 		Controlador ctr = new Controlador(miVista);
 		
 		miVista.control(ctr);
@@ -19,6 +21,7 @@ public class MainTest {
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.pack();
 		ventana.setVisible(true);
+		miVista.bIntercambiar.requestFocusInWindow();
 
 	}
 
