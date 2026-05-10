@@ -5,6 +5,10 @@ import java.io.BufferedWriter;
 
 import java.io.*;
 import java.io.FileWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class Modelo {
@@ -14,13 +18,23 @@ public class Modelo {
 	public Modelo() {
 	
 		miMapa = new HashMap<>();
-		String[] array;
 		
-		try (BufferedWriter bout = new BufferedWriter(new FileWriter("./src/ejercicio11/Diccionario.txt",true));
-				BufferedReader bin = new BufferedReader(new FileReader(new File("./src/ejercicio11/Diccionario.txt")))){
+		String diccionario = "";
+		String[]array; 
+		
+		try (BufferedWriter bout = Files.newBufferedWriter(Path.of("./src/ejercicio11/Diccionario.txt"),
+									Charset.defaultCharset(),
+									StandardOpenOption.CREATE);
+				BufferedReader bin = Files.newBufferedReader(Path.of("./src/ejercicio11/Diccionario.txt"))){
 			
-			List<String> lineas = bin.readAllLines();
-
+			diccionario = bin.readAllAsString();
+			
+			array = diccionario.split(" ");
+			
+			for (int i = 0; i < array.length; i+=2) {
+				miMapa.put(array[i],array[i+1]);
+			}
+			
 			
 		} catch (Exception e) {
 			// TODO: handle exception

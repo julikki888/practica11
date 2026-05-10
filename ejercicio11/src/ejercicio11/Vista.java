@@ -23,7 +23,7 @@ public class Vista extends JPanel{
 	 * Metodos de instancia
 	 */
 	JTextField tfEspanol, tfIngles;
-	JButton bTraducir, bIntercambiar;
+	JButton bTraducir, bIntercambiar, bAnadir;
 	
 	public Vista() {
 		this.setLayout(new BorderLayout());
@@ -37,6 +37,7 @@ public class Vista extends JPanel{
 		bIntercambiar = new JButton("🔁");
 		bIntercambiar.setBackground(new Color(250, 158, 170	));
 		this.add(bIntercambiar,BorderLayout.SOUTH);
+		bAnadir = new JButton("Añadir traduccion");
 		
 		this.add(pCentro,BorderLayout.CENTER);
 		

@@ -10,7 +10,7 @@ public class MainTest {
 		
 		Modelo miModelo = new Modelo();
 		
-		Controlador ctr = new Controlador(miVista);
+		Controlador ctr = new Controlador(miVista, miModelo);
 		
 		miVista.control(ctr);
 		
