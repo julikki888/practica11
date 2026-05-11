@@ -3,27 +3,25 @@ package ejercicio11;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
+import javax.swing.*;
+import javax.swing.border.*;
 
 public class Vista extends JPanel{
 
 	
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8120434776421619605L;
+	/**
 	 * Metodos de instancia
 	 */
-	JTextField tfEspanol, tfIngles;
-	JButton bTraducir, bIntercambiar, bAnadir;
+	private JTextField tfEspanol, tfIngles;
+	private JButton bTraducir, bIntercambiar, bAnadir;
+	private JPanel pIzquierdo, pDerecho;
 	
 	public Vista() {
 		this.setLayout(new BorderLayout());
@@ -34,11 +32,8 @@ public class Vista extends JPanel{
 		pCentro.add(pIzquierdo());
 		pCentro.add(pDerecho());
 		
-		bIntercambiar = new JButton("🔁");
-		bIntercambiar.setBackground(new Color(250, 158, 170	));
-		this.add(bIntercambiar,BorderLayout.SOUTH);
-		bAnadir = new JButton("Añadir traduccion");
-		
+		this.add(pSur(),BorderLayout.SOUTH);
+
 		this.add(pCentro,BorderLayout.CENTER);
 		
 		
@@ -46,8 +41,26 @@ public class Vista extends JPanel{
 	}
 	
 	
+	private Component pSur() {
+		
+		JPanel pSur = new JPanel();
+		
+		bIntercambiar = new JButton("🔁");
+		bIntercambiar.setBackground(new Color(250, 158, 170	));
+		
+		bAnadir = new JButton("Añadir traduccion");
+		bAnadir.setBackground(new Color(250, 158, 170	));
+		
+		pSur.add(bIntercambiar);
+		pSur.add(bAnadir);
+		pSur.setBackground(new Color(255, 233, 92));
+		
+		return pSur;
+	}
+
+
 	private JPanel pIzquierdo() {
-		JPanel pIzquierdo = new JPanel(new BorderLayout(50,50));
+		pIzquierdo = new JPanel(new BorderLayout(50,50));
 		
 		pIzquierdo.setBackground(new Color(255, 233, 92));
 		
@@ -64,7 +77,7 @@ public class Vista extends JPanel{
 		return pIzquierdo;
 	}
 	private JPanel pDerecho() {
-		JPanel pDerecho = new JPanel();
+		pDerecho = new JPanel();
 		tfIngles = new JTextField(12);
 		
 		pDerecho.add(tfIngles,BorderLayout.CENTER);
@@ -84,6 +97,7 @@ public class Vista extends JPanel{
 		
 		bTraducir.addActionListener(ctr);
 		bIntercambiar.addActionListener(ctr);
+		bAnadir.addActionListener(ctr);
 
 	}
 
@@ -92,12 +106,19 @@ public class Vista extends JPanel{
 	public JTextField getTfIngles() {return tfIngles;}
 	public JButton getbTraducir() {return bTraducir;}
 	public JButton getbIntercambiar() {return bIntercambiar;}
+	public JButton getbAnadir() {return bAnadir;}
+	public JPanel getpIzquierdo() {return pIzquierdo;}
+	public JPanel getpDerecho() {return pDerecho;}
 
 	public void setTfEspanol(JTextField tfEspanol) {this.tfEspanol = tfEspanol;}
 	public void setTfIngles(JTextField tfIngles) {this.tfIngles = tfIngles;}
 	public void setbTraducir(JButton bTraducir) {this.bTraducir = bTraducir;}
 	public void setbIntercambiar(JButton bIntercambiar) {this.bIntercambiar = bIntercambiar;}
+	public void setbAnadir(JButton bAnadir) {this.bAnadir = bAnadir;}
+	public void setpIzquierdo(JPanel pIzquierdo) {this.pIzquierdo = pIzquierdo;}
+	public void setpDerecho(JPanel pDerecho) {this.pDerecho = pDerecho;}
 
+	
 	
 	
 }

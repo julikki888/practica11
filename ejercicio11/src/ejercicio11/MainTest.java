@@ -21,7 +21,6 @@ public class MainTest {
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.pack();
 		ventana.setVisible(true);
-		miVista.bIntercambiar.requestFocusInWindow();
 
 	}
 
