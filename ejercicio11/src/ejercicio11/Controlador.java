@@ -18,15 +18,17 @@ public class Controlador implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == miVista.getbTraducir() && miVista.getbTraducir().getText().equals("Traducir")) {
+			miModelo.leer();
 			miVista.getTfIngles().setText(miModelo.getMiMapaE().get(miVista.getTfEspanol().getText()));
 		}else {
+			miModelo.leer();
 			miVista.getTfIngles().setText(miModelo.getMiMapaI().get(miVista.getTfEspanol().getText()));
 		}
 		if(e.getSource() == miVista.getbAnadir()) {
-			JOptionPane op = new JOptionPane();
-			String traduccion = op.showInputDialog("Escribe la nueva palabra a traducir");
+			miModelo.leer();
+			String traduccion = JOptionPane.showInputDialog("Escribe la nueva palabra a traducir");
 			miModelo.annadir(traduccion);
-			traduccion = op.showInputDialog("Escribe la traduccion de la palabra anterior");
+			traduccion = JOptionPane.showInputDialog("Escribe la traduccion de la palabra anterior");
 			miModelo.annadir(traduccion);
 		}
 		if(e.getSource() == miVista.getbIntercambiar()) {

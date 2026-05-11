@@ -2,7 +2,8 @@ package ejercicio11;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,14 +17,21 @@ public class Modelo {
 	public Modelo() {
 	
 		miMapaE = new HashMap<>();
-		miMapaI = new HashMap<>();
+		miMapaI = new HashMap<>();	
+		leer();
 		
+	}
+	
+	public void leer() {
 		String diccionario = "";
 		String[]array; 
 		
 		try (BufferedReader bin = Files.newBufferedReader(Path.of("./src/ejercicio11/Diccionario.txt"))){
 			
 			diccionario = bin.readAllAsString();
+			if(diccionario.equals("") || diccionario.equals(" ")) {
+				throw new IOException("No hay nada escrito en el fichero");
+			}
 			
 			array = diccionario.split(" ");
 			
@@ -35,23 +43,31 @@ public class Modelo {
 			}
 			
 			
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (FileNotFoundException e){
+			e.printStackTrace();
+		
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
-		
-		
-		
-		
 	}
+	
 	public void annadir (String str) {
 		try (BufferedWriter bout = Files.newBufferedWriter(Path.of("./src/ejercicio11/Diccionario.txt"),
 				Charset.defaultCharset(),
-				StandardOpenOption.CREATE)){
+				StandardOpenOption.CREATE,
+				StandardOpenOption.APPEND)){
 			if(miMapaE.containsKey(str)) {
 				throw new Exception("Esta palabra ya esta en el diccionario");
 			}
+			if(str==null || str.equals("") || str.equals(" ") ) {
+				throw new Exception("Tienes que escribir algo");
+			}
+			if(str.matches(".*\\d.*")) {
+				throw new Exception("No puedes traducir numeros");
+			}
 			
-			bout.append(" "+str+" ");
+			bout.append(" "+str);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

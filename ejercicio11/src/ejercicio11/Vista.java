@@ -79,6 +79,7 @@ public class Vista extends JPanel{
 	private JPanel pDerecho() {
 		pDerecho = new JPanel();
 		tfIngles = new JTextField(12);
+		tfIngles.setEditable(false);
 		
 		pDerecho.add(tfIngles,BorderLayout.CENTER);
 		creaBorde(pDerecho, "Ingles");
